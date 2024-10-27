@@ -7,7 +7,7 @@ body {
 header {
     background-color: #333; /* Background color */
     color: white; /* Text color */
-    padding: 20px; /* Padding for the header */
+    padding: 10px; /* Padding for the header */
     width: 100%; /* Full width */
     position: fixed; /* Fix position at the top */
     top: 0; /* Align to the top */
