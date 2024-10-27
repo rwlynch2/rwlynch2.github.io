@@ -5,9 +5,13 @@ body {
 }
 
 header {
-    background: #333;
-    color: white;
-    padding: 10px 0;
+    background-color: #333; /* Background color */
+    color: white; /* Text color */
+    padding: 20px; /* Padding for the header */
+    width: 100%; /* Full width */
+    position: fixed; /* Fix position at the top */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
 }
 
 nav ul {
