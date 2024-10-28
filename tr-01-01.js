@@ -11,6 +11,8 @@ const COLS = Math.floor(canvas.width/(2* BLOCK_SIZE)); // Calculate the number o
 const ROWS = Math.floor(canvas.height / BLOCK_SIZE);
 const fixedBlocks = Array.from({ length: ROWS }, () => Array(COLS).fill(0))
 let score = 0; // Initialize the score variable
+let gameRunning = false; // Indicates if the game is currently running
+let gamePaused = true; // Initially paused
 
 function drawGrid() {
   context.strokeStyle = 'black'; // Color of the outline
@@ -172,6 +174,7 @@ function gameLoop() {
     alert("Game Over! The blocks have reached the top.");
     return; // Exit the game loop to stop the game
   }
+  if (!gamePaused) {
     setTimeout(() => {
         currentTetromino.clear(); // Clear the current Tetromino
         currentTetromino.moveDown(); // Move the Tetromino down
@@ -196,6 +199,7 @@ function gameLoop() {
 
         gameLoop(); // Continue the game loop with the new interval
     }, currentInterval); // Use the updated interval
+  }
 }
 
 gameLoop(); // Start the game loop
@@ -321,3 +325,27 @@ function renderScore() {
   // Draw the score in the right half of the canvas
   context.fillText("Score: " + score, canvas.width / 2 + 10, 30); // Display score at the top-right
 }
+
+document.getElementById('startButton').addEventListener('click', () => {
+    if (!gameRunning) {
+        gameRunning = true; // Set the game running flag
+        gamePaused = false; // Unpause the game
+        gameLoop(); // Start the game loop
+    }
+});
+
+document.getElementById('pauseButton').addEventListener('click', () => {
+    gamePaused = !gamePaused; // Toggle the paused state
+});
+
+document.getElementById('resetButton').addEventListener('click', () => {
+    // Reset game state
+    fixedBlocks.forEach(row => row.fill(0)); // Clear the fixed blocks
+    score = 0; // Reset the score
+    currentTetromino = getRandomTetromino(); // Get a new Tetromino
+    gameRunning = false; // Reset the game running flag
+    gamePaused = true; // Pause the game
+    context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    drawGrid(); // Redraw the grid
+    renderScore(); // Render the reset score
+});
