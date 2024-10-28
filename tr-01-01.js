@@ -3,11 +3,14 @@
 
 // Canvas and context initialization
 const canvas = document.getElementById('canvas1');
+// @ts-ignore
 const context = canvas.getContext('2d');
 
 // Constants for Tetris grid
 const BLOCK_SIZE = 30; // Size of each block in pixels (to fit the grid size)
+// @ts-ignore
 const COLS = Math.floor(canvas.width/(2* BLOCK_SIZE)); // Calculate the number of columns
+// @ts-ignore
 const ROWS = Math.floor(canvas.height / BLOCK_SIZE);
 const fixedBlocks = Array.from({ length: ROWS }, () => Array(COLS).fill(0))
 let score = 0; // Initialize the score variable
@@ -120,6 +123,7 @@ clear() {
   }
 
   rotate() {
+      // @ts-ignore
       this.shape = this.shape[0].map((val, index) =>
           this.shape.map((row) => row[index]).reverse()
       );
@@ -320,12 +324,15 @@ function renderScore() {
   context.fillStyle = "black"; // Set the color for the score text
 
   // Clear the area where the score will be displayed
+  // @ts-ignore
   context.clearRect(canvas.width / 2, 0, canvas.width / 2, canvas.height);
 
   // Draw the score in the right half of the canvas
+  // @ts-ignore
   context.fillText("Score: " + score, canvas.width / 2 + 10, 30); // Display score at the top-right
 }
 
+// @ts-ignore
 document.getElementById('startButton').addEventListener('click', () => {
     if (!gameRunning) {
         gameRunning = true; // Set the game running flag
@@ -334,10 +341,12 @@ document.getElementById('startButton').addEventListener('click', () => {
     }
 });
 
+// @ts-ignore
 document.getElementById('pauseButton').addEventListener('click', () => {
     gamePaused = !gamePaused; // Toggle the paused state
 });
 
+// @ts-ignore
 document.getElementById('resetButton').addEventListener('click', () => {
     // Reset game state
     fixedBlocks.forEach(row => row.fill(0)); // Clear the fixed blocks
@@ -345,6 +354,7 @@ document.getElementById('resetButton').addEventListener('click', () => {
     currentTetromino = getRandomTetromino(); // Get a new Tetromino
     gameRunning = false; // Reset the game running flag
     gamePaused = true; // Pause the game
+    // @ts-ignore
     context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
     drawGrid(); // Redraw the grid
     renderScore(); // Render the reset score
