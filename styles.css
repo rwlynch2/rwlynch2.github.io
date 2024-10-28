@@ -2,10 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 120px;
+    background-color: #a3a3a3;
 }
 
 header {
-    background-color: #5c5c5c; /* Background color */
+    background-color: #c4c4c4; /* Background color */
     color: white; /* Text color */
     padding: 10px; /* Padding for the header */
     width: 100%; /* Full width */
@@ -27,4 +28,20 @@ nav ul li {
 footer {
     margin-top: 20px;
     text-align: center;
+}
+
+.project {
+    margin: 15px 0;
+    cursor: pointer; /* Show pointer on hover */
+}
+
+.project-title {
+    font-size: 1.5em; /* Title size */
+}
+
+.project-details {
+    margin-top: 10px; /* Space above details */
+    padding: 10px;
+    border: 1px solid #ddd; /* Optional: border around details */
+    background-color: #f9f9f9; /* Optional: background color */
 }
